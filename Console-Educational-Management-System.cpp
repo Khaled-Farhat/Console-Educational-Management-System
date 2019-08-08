@@ -1,6 +1,4 @@
-#include "stdafx.h"
 #include <iostream>
-#include "string"
 #include <vector>
 
 using namespace std;
@@ -1025,7 +1023,6 @@ int assignment::is_submitted(int student_id){
 void assignment::print_question(){
 	cout << "Question: " << question << "\n";
 }
-
 
 
 int main(){

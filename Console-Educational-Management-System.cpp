@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 
 struct user{
-	string username, password;
+	string username = "", password = "";
 
 	user(string my_username="", string my_password=""){
 		username = my_username;
@@ -19,7 +20,7 @@ struct user{
 };
 
 struct account{
-	string type;
+	string type = "";
 	user account_data;
 
 	account(string my_username, string my_password, string my_type){
@@ -39,9 +40,9 @@ struct account{
 };
 
 struct solution{
-	string student_name, answer;
-	int grade, course_index, assignment_index, student_pos;
-	bool viewed;
+	string student_name = "", answer = "";
+	int grade = -1, course_index = -1, assignment_index = -1, student_pos = -1;
+	bool viewed = 0;
 
 	solution(string my_name, string my_answer, int my_course_index, int my_assignment_index, int my_student_pos){
 		student_name = my_name;
@@ -67,8 +68,8 @@ struct solution{
 };
 
 struct assignment{
-	string question;
-	int course_index, total_solutions, instructor_id;
+	string question = "";
+	int course_index = -1, total_solutions = 0, instructor_id = -1;
 	vector<solution> all_solutions;
 
 	assignment(int my_insrtuctor_id, string my_question, int my_course_index){
@@ -88,8 +89,8 @@ struct assignment{
 };
 
 struct student{
-	string name, password;
-	int id, my_courses_number, pos;
+	string name = "", password = "";
+	int id = -1, my_courses_number = 0, pos = -1;
 	vector<int> my_courses_index;
 
 	student(string my_name, string my_password, int my_id, int my_pos){
@@ -116,8 +117,8 @@ struct student{
 };
 
 struct course{
-	string name, code, instructor;
-	int id, total_assignments, instructor_id, total_students;
+	string name = "", code = "", instructor = "";
+	int id = -1, total_assignments = 0, instructor_id = -1, total_students = 0;
 	vector<assignment> all_assignments;
 	vector<int> students_id;
 	
@@ -154,8 +155,8 @@ struct course{
 };
 
 struct doctor{
-	string name, password;
-	int id, my_courses_number, pos;
+	string name = "", password = "";
+	int id = -1, my_courses_number = 0, pos = -1;
 	vector<int> my_courses_index;
 
 	doctor(string my_name, string my_password, int my_id, int my_pos){
@@ -178,7 +179,10 @@ struct doctor{
 };
 
 struct all_data{
-	int total_users, total_doctors, total_students, total_courses;
+	int total_users = 0,
+		total_doctors = 0,
+		total_students = 0,
+		total_courses = 0;
 	vector<doctor> all_doctors;
 	vector<student> all_students;
 	vector<course> all_courses;
@@ -201,6 +205,8 @@ struct all_data{
 	int add_course(course new_course);
 	void print_students();
 	void print_doctors();
+	bool no_space(string s);
+	string get_string();
 }; all_data data;
 
 
@@ -216,32 +222,41 @@ void all_data::home_page(){
 	cin >> choice;
 	cout << "\n\n";
 
-	switch (choice){
-	case 1:
-		login();
-		break;
-
-	case 2:
-		signup();
-		home_page();
-		break;
-
-	case 3:
-		exit(0);
+	while (choice < 1 || choice > 3){
+		cout << "Error. You should enter a number in range [1 - 3]: ";
+		cin >> choice;
 	}
+
+	switch (choice){
+		case 1 :
+			login();
+			return;
+
+		case 2 :
+			signup();
+			home_page();
+			return;
+
+		case 3 :
+			exit(0);
+			return;
+	}
+
+	home_page();
 }
 
 void all_data::login(){
 
-	string user_name, password;
+	string user_name = "", password = "";
 
 	cout << "Enter your user name and your password\n";
 
 	cout << "username: ";
-	cin >> user_name;
+	user_name = get_string();
+
 
 	cout << "password: ";
-	cin >> password;
+	password = get_string();
 
 	cout << "\n\n";
 
@@ -255,6 +270,7 @@ void all_data::login(){
 	}
 
 	else{
+
 		int doctor_index = find_doctor(entered);
 
 		if (doctor_index != -1){
@@ -276,21 +292,35 @@ void all_data::signup(){
 	int choice;
 
 	cout << "Enter your user name: ";
-	cin >> username;
+	username = get_string();
 
 	cout << "Enter your password: ";
-	cin >> password;
+	password = get_string();
 
+	string type;
 	cout << "Enter account type\n"
 		<< "\t1 - professor\n"
 		<< "\t2 - student\n"
 		<< "\tEnter Choice: ";
-	cin >> choice;
-	cout << "\n\n";
 
-	string type;
-	if (choice == 1)        type = "doctor";
-	else                    type = "student";
+	while (1){
+		cin >> choice;
+
+		if (choice == 1){
+			type = "doctor";
+			break;
+		}
+
+		else if (choice == 2){
+			type = "student";
+			break;
+		}
+
+		cout << "Error. Enter a number in range [1 - 2]: ";
+	}
+
+	cout << "\n\n";
+	
 
 	// check if user name available
 	user entered(username, password);
@@ -368,6 +398,29 @@ void all_data::print_doctors(){
 	cout << "\n\n";
 }
 
+string all_data::get_string(){
+	
+	string s = "";
+
+	while (1){
+		getline(cin, s);
+
+		if (no_space(s))		break;
+		else					cout << "Error. don't type spaces. Re enter your text: ";
+	}
+
+	return s;
+}
+
+bool all_data::no_space(string s){
+
+	for (int i = 0; i < s.size(); i++)
+		if (!isalnum(s[i]))
+			return 0;
+
+	return 1;
+}
+
 
 
 void student::main_page(){
@@ -383,28 +436,33 @@ void student::main_page(){
 	cin >> choice;
 	cout << "\n\n";
 
+	while (choice < 1 || choice > 5){
+		cout << "Error. You should enter a number in range [1 - 5]: ";
+		cin >> choice;
+	}
+
 	switch (choice){
-	case 1 :
-		suggest_course();
-		break;
+		case 1 :
+			suggest_course();
+			break;
 
-	case 2 :
-		list_courses();
-		cout << "\n";
-		break;
+		case 2 :
+			list_courses();
+			cout << "\n";
+			break;
 
-	case 3 :
-		view_course();
-		break;
+		case 3 :
+			view_course();
+			break;
 
-	case 4 :
-		grades_report();
-		break;
+		case 4 :
+			grades_report();
+			break;
 
-	case 5 :
-		cout << "Successfully logged out\n\n\n";
-		data.home_page();
-		return;
+		case 5 :
+			cout << "Successfully logged out\n\n\n";
+			data.home_page();
+			return;
 	}
 
 	main_page();
@@ -437,7 +495,16 @@ void student::suggest_course(){
 
 	int index;
 	cout << "\nWhich ith [1 - " << cnt << "] to register? ";
-	cin >> index;
+
+	while (1){
+		cin >> index;
+
+		if (index >= 1 && index <= cnt)
+			break;
+
+		else
+			cout << "Error. Enter a number in range [1 - " << cnt << "]: ";
+	}
 	index--;
 
 	register_in_course(store_index[index]);
@@ -498,9 +565,18 @@ void student::view_course(){
 
 	int index;
 	cout << "Which ith [1 - " << my_courses_number << "] to view? ";
-	cin >> index;
+	while (1){
+		cin >> index;
 
-	int index_in_data = my_courses_index[index - 1];
+		if (index >= 1 && index <= my_courses_number)
+			break;
+
+		else
+			cout << "Error. Enter a number in range [1 - " << my_courses_number << "]: ";
+	}
+	index--;
+
+	int index_in_data = my_courses_index[index];
 	cout << "\n\n";
 
 	data.all_courses[index_in_data].student_view_course(pos);
@@ -539,6 +615,11 @@ void doctor::main_page(){
 	cin >> choice;
 	cout << "\n\n";
 
+	while (choice < 1 || choice > 4){
+		cout << "Error. You should enter a number in range [1 - 4]: ";
+		cin >> choice;
+	}
+
 	switch (choice){
 		case 1 :
 			list_courses();
@@ -553,7 +634,7 @@ void doctor::main_page(){
 			view_courses();
 			break;
 
-		case 4:
+		case 4 :
 			cout << "Successfully logged out\n\n\n";
 			data.home_page();
 			return;
@@ -566,11 +647,11 @@ void doctor::add_course(){
 
 	string course_name;
 	cout << "Enter course name: ";
-	cin >> course_name;
+	course_name = data.get_string();
 
 	string course_code;
 	cout << "Enter course code: ";
-	cin >> course_code;
+	course_code = data.get_string();
 
 	course new_course(course_name, course_code, name, data.total_courses, id);
 	int index = data.total_courses;
@@ -603,7 +684,7 @@ void doctor::list_courses(){
 void doctor::view_courses(){
 
 	if (my_courses_number == 0){
-		cout << "I have 0 courses.\n\n";
+		cout << "I have 0 courses. No courses to view.\n\n";
 		main_page();
 		return;
 	}
@@ -612,9 +693,18 @@ void doctor::view_courses(){
 
 	int index;
 	cout << "Which ith [1 - " << my_courses_number << "] to view? ";
-	cin >> index;
+	while (1){
+		cin >> index;
 
-	int index_in_data = my_courses_index[index - 1];
+		if (index >= 1 && index <= my_courses_number)
+			break;
+
+		else
+			cout << "Error. Enter a number in range [1 - " << my_courses_number << "]: ";
+	}
+	index--;
+
+	int index_in_data = my_courses_index[index];
 	cout << "\n";
 
 	data.all_courses[index_in_data].doctor_view_course();
@@ -637,7 +727,7 @@ void course::add_assignment(){
 
 	string question;
 	cout << "Enter the question: ";
-	cin >> question;
+	question = data.get_string();
 
 	assignment new_task(instructor_id, question, id);
 	all_assignments.push_back(new_task);
@@ -671,21 +761,27 @@ void course::doctor_view_course(){
 	cin >> choice;
 	cout << "\n\n";
 
+	while (choice < 1 || choice > 4){
+		cout << "Error. You should enter a number in range [1- 4]: ";
+		cin >> choice;
+	}
+
 	switch (choice){
-	case 1:
-		doctor_list_assignments();
-		break;
+		case 1:
+			doctor_list_assignments();
+			break;
 
-	case 2:
-		add_assignment();
-		break;
+		case 2:
+			add_assignment();
+			break;
 
-	case 3 :
-		doctor_view_assignment();
+		case 3 :
+			doctor_view_assignment();
+			break;
 
-	case 4:
-		data.all_doctors[instructor_id].main_page();
-		return;
+		case 4:
+			data.all_doctors[instructor_id].main_page();
+			return;
 	}
 
 	doctor_view_course();
@@ -696,7 +792,15 @@ void course::doctor_view_assignment(){
 	
 	int index;
 	cout << "Which ith [1 - " << total_assignments << "] to view? ";
-	cin >> index;
+	while (1){
+		cin >> index;
+
+		if (index >= 1 && index <= total_assignments)
+			break;
+
+		else
+			cout << "Error. Enter a number in range [1 - " << total_assignments << "]: ";
+	}
 	index--;
 	cout << "\n";
 
@@ -745,19 +849,24 @@ void course::student_view_course(int student_pos){
 	cin >> choice;
 	cout << "\n\n";
 
+	while (choice < 1 || choice > 3){
+		cout << "Error. You should enter a number in range [1 - 3]: ";
+		cin >> choice;
+	}
+
 	switch (choice){
-	case 1:
-		submit_solution(student_pos);
-		break;
+		case 1 :
+			submit_solution(student_pos);
+			break;
 
-	case 2:
-		unregister(student_pos);
-		data.all_students[student_pos].main_page();
-		return;
+		case 2 :
+			unregister(student_pos);
+			data.all_students[student_pos].main_page();
+			return;
 
-	case 3:
-		data.all_students[student_pos].main_page();
-		return;
+		case 3 :
+			data.all_students[student_pos].main_page();
+			return;
 	}
 
 	student_view_course(student_pos);
@@ -787,7 +896,16 @@ void course::student_list_my_assignments(int student_id){
 void course::submit_solution(int student_pos){
 	int choosed_index;
 	cout << "Which ith [1 - " << total_assignments << "] to submit? ";
-	cin >> choosed_index;
+
+	while (1){
+		cin >> choosed_index;
+
+		if (choosed_index >= 1 && choosed_index <= total_assignments)
+			break;
+
+		else
+			cout << "Error. Enter a number in range [1 - " << total_assignments << "]: ";
+	}
 	choosed_index--;
 	cout << "\n";
 
@@ -795,7 +913,7 @@ void course::submit_solution(int student_pos){
 
 	string your_solution;
 	cout << "Enter you solution (no spaces): ";
-	cin >> your_solution;
+	your_solution = data.get_string();
 
 	solution new_solution(data.all_students[student_pos].name, your_solution, id, choosed_index, student_pos);
 
@@ -912,6 +1030,11 @@ void solution::prompt_grade(){
 	cout << "Enter new grade: ";
 	cin >> new_grade;
 
+	while (new_grade < 0 || new_grade > 10){
+		cout << "Error. Grade should be in range [1 - 10]. Enter grade: ";
+		cin >> new_grade;
+	}
+
 	set_grade(new_grade);
 
 	cout << "Grade set successfully to " << grade << "\n\n";
@@ -932,6 +1055,11 @@ void solution::doctor_view_solution(){
 		<< "\tEnter Choice: ";
 	cin >> choice;
 	cout << "\n\n";
+
+	while (choice < 1 || choice > 2){
+		cout << "Error. You should enter a number in range [1 - 2]. Enter your choice: ";
+		cin >> choice;
+	}
 
 	switch (choice){
 		case  1 :
@@ -959,23 +1087,28 @@ void assignment::doctor_view_assignment(){
 	cin >> choice;
 	cout << "\n\n";
 
+	while (choice < 1 || choice > 4){
+		cout << "Error. You should enter a number in range [1 - 4]. Enter your choice: ";
+		cin >> choice;
+	}
+
 	switch (choice){
-	case 1:
-		show_grades_report();
-		break;
+		case 1 :
+			show_grades_report();
+			break;
 
-	case 2:
-		list_solutions();
-		cout << "\n";
-		break;
+		case 2 :
+			list_solutions();
+			cout << "\n";
+			break;
 
-	case 3:
-		view_solution();
-		break;
+		case 3 :
+			view_solution();
+			break;
 
-	case 4:
-		data.all_doctors[instructor_id].main_page();
-		return;
+		case 4 :
+			data.all_doctors[instructor_id].main_page();
+			return;
 	}
 
 	doctor_view_assignment();
@@ -1005,7 +1138,15 @@ void assignment::view_solution(){
 
 	int index;
 	cout << "Which ith [1 - " << total_solutions << "] to view? ";
-	cin >> index;
+	while (1){
+		cin >> index;
+
+		if (index >= 1 && index <= total_solutions)
+			break;
+
+		else
+			cout << "Error. Enter a number in range [1 - " << total_solutions << "]: ";
+	}
 	index--;
 	cout << "\n\n";
 

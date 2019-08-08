@@ -784,6 +784,7 @@ void course::doctor_view_course(){
 }
 
 void course::doctor_view_assignment(){
+	
 	doctor_list_assignments();
 	
 	int index;

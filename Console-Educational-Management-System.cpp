@@ -1154,6 +1154,7 @@ void assignment::view_solution(){
 }
 
 int assignment::is_submitted(int student_id){
+	
 	for (int i = 0; i < total_solutions; i++)
 		if (all_solutions[i].student_pos == student_id)
 			return i;

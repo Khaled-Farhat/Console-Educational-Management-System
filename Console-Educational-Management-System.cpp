@@ -227,7 +227,7 @@ void all_data::home_page(){
 		break;
 
 	case 3:
-		return;
+		exit(0);
 	}
 }
 

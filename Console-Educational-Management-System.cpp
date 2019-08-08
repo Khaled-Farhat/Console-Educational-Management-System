@@ -1,4 +1,6 @@
+#include "stdafx.h"
 #include <iostream>
+#include "string"
 #include <vector>
 #include <string>
 
@@ -206,7 +208,7 @@ struct all_data{
 	void print_students();
 	void print_doctors();
 	bool no_space(string s);
-	string get_string();
+	void get_string(string &s);
 }; all_data data;
 
 
@@ -234,7 +236,7 @@ void all_data::home_page(){
 
 		case 2 :
 			signup();
-			return;
+			break;;
 
 		case 3 :
 			exit(0);
@@ -251,11 +253,11 @@ void all_data::login(){
 	cout << "Enter your user name and your password\n";
 
 	cout << "username: ";
-	user_name = get_string();
+	get_string(user_name);
 
 
 	cout << "password: ";
-	password = get_string();
+	get_string(password);
 
 	cout << "\n\n";
 
@@ -286,15 +288,15 @@ void all_data::login(){
 }
 
 void all_data::signup(){
-
-	string username, password;
+	
+	string username = "", password = "";
 	int choice;
 
 	cout << "Enter your user name: ";
-	username = get_string();
+	get_string(username);
 
 	cout << "Enter your password: ";
-	password = get_string();
+	get_string(password);
 
 	string type;
 	cout << "Enter account type\n"
@@ -397,18 +399,15 @@ void all_data::print_doctors(){
 	cout << "\n\n";
 }
 
-string all_data::get_string(){
-	
-	string s = "";
+void all_data::get_string(string &s){
 
 	while (1){
+		cin.ignore();
 		getline(cin, s);
 
 		if (no_space(s))		break;
 		else					cout << "Error. don't type spaces. Re enter your text: ";
 	}
-
-	return s;
 }
 
 bool all_data::no_space(string s){
@@ -646,11 +645,11 @@ void doctor::add_course(){
 
 	string course_name;
 	cout << "Enter course name: ";
-	course_name = data.get_string();
+	data.get_string(course_name);
 
 	string course_code;
 	cout << "Enter course code: ";
-	course_code = data.get_string();
+	data.get_string(course_code);
 
 	course new_course(course_name, course_code, name, data.total_courses, id);
 	int index = data.total_courses;
@@ -726,7 +725,7 @@ void course::add_assignment(){
 
 	string question;
 	cout << "Enter the question: ";
-	question = data.get_string();
+	data.get_string(question);
 
 	assignment new_task(instructor_id, question, id);
 	all_assignments.push_back(new_task);
@@ -912,7 +911,7 @@ void course::submit_solution(int student_pos){
 
 	string your_solution;
 	cout << "Enter you solution (no spaces): ";
-	your_solution = data.get_string();
+	data.get_string(your_solution);
 
 	solution new_solution(data.all_students[student_pos].name, your_solution, id, choosed_index, student_pos);
 

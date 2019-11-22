@@ -19,7 +19,7 @@ ProfessorFlowController::ProfessorFlowController(Database& theDatabase, const st
 	: TAFlowController(theDatabase, username) {}
 
 // start ProfessorFlowController
-// overrides virtual funcion
+// overrides virtual function
 void ProfessorFlowController::run() {
 	bool userExited = false; // whether user has logged out
 	const vector<string> TAMainMenu{ "Create course", "List courses", "View course", "Log out" };
@@ -64,7 +64,7 @@ void ProfessorFlowController::run() {
 // manage view course menu
 // overrides virtual function
 void ProfessorFlowController::viewCourse() {
-	bool userExited = false; // whether use has choosed back
+	bool userExited = false; // whether use has choose back
 	const vector<string> viewCourseMenu{ "Add teacher assistant to this course", "Add assignment", "List assignments","View assignment", "back" };
 
 	while (userExited == false) {

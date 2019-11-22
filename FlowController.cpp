@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <stdexcept>
+#include <exception>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ int FlowController::inputInteger(int low, int high) {
 			continue;
 		}
 
-		bool validInput = 1;
+		bool validInput = true;
 
 		for (size_t i{ 0 }; i < input.size(); ++i) {
 			if (!isdigit(input[i])) {
@@ -75,7 +76,7 @@ int FlowController::inputInteger(int low, int high) {
 	return integer;
 }
 
-// takes size; input a strig with size less than or equal that size; returns the string
+// takes size; input a string with size less than or equal that size; returns the string
 string FlowController::inputString(size_t stringSize) {
 	string inputString;
 
@@ -87,7 +88,7 @@ string FlowController::inputString(size_t stringSize) {
 			continue;
 		}
 
-		bool validInput = 1;
+		bool validInput = true;
 
 		for (size_t i{ 0 }; i < input.size(); ++i) {
 			if (input[i] == ' ') {
@@ -123,10 +124,10 @@ void FlowController::displayMenu(const vector<string>& menu) const {
 }
 
 // call the database to get course's assignments list
-// return false if there are no assigments; true otherwise
+// return false if there are no assignments; true otherwise
 bool FlowController::listCourseAssignments() {
 	int assignmentsCount = database.getAssignmentsCount(courseCode);
-	
+
 	if (assignmentsCount == 0) {
 		cout << "\nCourse " << courseCode << " has no assignments";
 		return false;
@@ -142,7 +143,7 @@ bool FlowController::listCourseAssignments() {
 }
 
 // call the database to get current account's courses codes
-// return false if there are no coruses; true otherwise
+// return false if there are no courses; true otherwise
 bool FlowController::listCoursesCodes() const {
 	const vector<string> coursesCodes = database.getCoursesCodes(username);
 
@@ -169,7 +170,7 @@ int FlowController::inputAssignmentSelection() {
 		return selection;
 	}
 	else {
-		throw exception("\nThis course does not have any assignments.");
+		throw std::runtime_error("\nThis course does not have any assignments.");
 	}
 }
 
@@ -185,6 +186,6 @@ std::string FlowController::inputCourseSelection() {
 		return courseCodeSelection;
 	}
 	else {
-		throw exception("\nYou don't have any courses.");
+		throw std::runtime_error("\nYou don't have any courses.");
 	}
 }

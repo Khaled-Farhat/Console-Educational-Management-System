@@ -25,7 +25,7 @@ public:
 	const std::vector<std::string> getCoursesCodes(const std::string&); // takes account's username; return list of courses codes
 	// const std::vector<Assignment>& getCourseAssignments(const std::string&) const; // takes course's code; returns course's assignments
 	int getCoursesCount(const std::string&); // takes account's username; return account's courses count
-	int getAssignmentsCount(const std::string&); // takes course's code; return assignments count 
+	int getAssignmentsCount(const std::string&); // takes course's code; return assignments count
 	const std::vector<std::string> getComplementCoursesCodes(const std::string&); // takes account's username;
 																							  // return courses codes that user has not enrolled in it
 	void enrollInCourse(const std::string&, const std::string&); // takes student's username and course's code; enroll student in course
@@ -52,7 +52,7 @@ public:
 	bool addTAToCourse(const std::string&, const std::string&); // takes course code and Teacher Assistant username; to allow Teacher Assistant to manage course
 																// (add assignments and grade students solutions)
 																// returns true if success; false otherwise (if there is no Teacher Assistant with that username)
-	const std::string& getAssignmentQuetion(const std::string&, int); // takes coruse's index and assignment's index; returns assignment's question
+	const std::string& getAssignmentQuetion(const std::string&, int); // takes course's index and assignment's index; returns assignment's question
 
 private:
 	CoursesDatabase coursesDatabase;

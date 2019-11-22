@@ -1,4 +1,4 @@
-// Mmeber-function definition for class Professor
+// Member-function definition for class Professor
 #include "Professor.h"
 #include "Account.h"
 #include <string>

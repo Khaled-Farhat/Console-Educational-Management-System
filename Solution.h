@@ -6,7 +6,7 @@
 
 class Solution {
 public:
-	Solution(const std::string&, const std::string&); // constructor takes student's username and soluiton answer
+	Solution(const std::string&, const std::string&); // constructor takes student's username and solution answer
 	bool isStudentSolution(const std::string&) const; // takes student's username; returns 1 if the solution is submitted by that student
 	const std::string& getAnswer() const; // return solution's answer
 	void setGrade(int); // set solution's grade

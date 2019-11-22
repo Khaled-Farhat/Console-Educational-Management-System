@@ -1,4 +1,4 @@
-// Memeber-function definitions for class Database
+// Member-function definitions for class Database
 #include "Database.h"
 #include "CoursesDatabase.h"
 #include "ProfessorsDatabase.h"
@@ -108,7 +108,7 @@ const vector<string> Database::getComplementCoursesCodes(const string& username)
 	sort(userCourses.begin(), userCourses.end());
 
 	size_t indexInUserCourses = 0;
-	
+
 	for (size_t i{ 0 }; i < allCourses.size(); ++i) {
 		if ((indexInUserCourses < userCourses.size()) && (allCourses[i] == userCourses[i])) {
 			++indexInUserCourses;

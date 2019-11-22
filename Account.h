@@ -14,7 +14,7 @@ public:
 	const std::vector<std::string> getCoursesCodes() const; // return vector of courses codes
 	int getCoursesCount() const; // return the number of courses that account's has
 
-	void addCourse(const std::string&); // add coruse to account's courses vector
+	void addCourse(const std::string&); // add course to account's courses vector
 	void removeCourse(const std::string&); // remove course from account's courses
 	const std::string& getUsername() const;
 

@@ -1,4 +1,4 @@
-// TADatabase class definition; represents Teacher Assistants database
+// TAsDatabase class definition; represents Teacher Assistants database
 #ifndef TASDATABASE_H
 #define TASDATABASE_H
 

@@ -17,7 +17,7 @@ private:
 	std::string currentUsername;
 	bool userAuthenticated; // whether user authenticated or not
 	AccountType accountType;
-	
+
 	void displayMainMenu() const;
 	void login();
 	void signup();
@@ -26,7 +26,7 @@ private:
 
 	// private utility functions
 	int inputInteger(int, int); // input integer in range [low - high]; check that it is valid integer; returns it
-	std::string inputString(size_t); // takes size; input a strig with size less than or equal that size; returns the string
+	std::string inputString(size_t); // takes size; input a string with size less than or equal that size; returns the string
 };
 
 #endif

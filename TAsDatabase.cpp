@@ -38,7 +38,7 @@ void TAsDatabase::createTAAccount(const string& username, const string& password
 	teacherAssistants.push_back(TeacherAssistant(username, password));
 }
 
-// return pointer to TeacherAssistant object; reutrns null pointer if not found
+// return pointer to TeacherAssistant object; returns null pointer if not found
 TeacherAssistant* TAsDatabase::getTA(const string& username) {
 	for (size_t i{ 0 }; i < teacherAssistants.size(); ++i) {
 		if (teacherAssistants[i].getUsername() == username) {

@@ -94,7 +94,7 @@ void StudentFlowController::enrollInCourse() {
 	displayMenu(menu);
 	int choice = inputInteger(1, 2);
 	EnrollInCourseMenuOption option = static_cast<EnrollInCourseMenuOption>(choice);
-	
+
 	switch (option) {
 		case EnrollInCourseMenuOption::ENROLL: {
 			cout << "\nWhich ith course would you like to enroll in?"
@@ -106,7 +106,7 @@ void StudentFlowController::enrollInCourse() {
 			cout << "\nSuccessfully enrolled in  course " << courseCode;
 			break;
 		}
-		
+
 		case EnrollInCourseMenuOption::BACK:
 			break;
 	}
@@ -116,10 +116,10 @@ void StudentFlowController::enrollInCourse() {
 // overrides FlowController pure virtual function
 void StudentFlowController::viewCourse() {
 	vector<string> ViewCourseMenu{ "List course's assignments", "Unenroll from course", "Back" };
-	bool userExtied = false; // whether user has choosed back
+	bool userExtied = false; // whether user has choose back
 
 	while (userExtied == false) {
-		// loop while user has not choosed back
+		// loop while user has not choose back
 		displayMenu(ViewCourseMenu);
 		int choice = inputInteger(1, 3);
 		StudentViewCourseMenuOption option = static_cast<StudentViewCourseMenuOption>(choice);
@@ -127,7 +127,7 @@ void StudentFlowController::viewCourse() {
 		switch (option) {
 		case StudentViewCourseMenuOption::LIST: { // list course's assignments
 			int assignmentIndex{ -1 };
-			
+
 			try {
 				assignmentIndex = inputAssignmentSelection();
 			}
@@ -170,7 +170,7 @@ void StudentFlowController::displayAssignmentInfo() const {
 	if (submitted) {
 		cout << " - submitted - ";
 		bool graded = database.isStudentSolutionGraded(username, courseCode, assignmentIndex);
-		
+
 		if (graded) {
 			int grade = database.getStudentGradeInAssignment(username, courseCode, assignmentIndex);
 			cout << grade;
@@ -191,7 +191,6 @@ void StudentFlowController::displayAssignmentInfo() const {
 // overrides FlowController pure virtual function
 void StudentFlowController::viewAssignment() {
 	vector<string> viewAssignmentMenu{ "Submit solution to assignment", "Back" };
-	int assignmentIndex = getAssignmentIndex();
 
 	displayMenu(viewAssignmentMenu);
 	int choice = inputInteger(1, 2);

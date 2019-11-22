@@ -18,7 +18,7 @@ public:
 																 // return true if student solution has been graded; false otherwise
 	int getStudentGradeInAssignment(const std::string&, int) const; // takes student's username and assignment index
 																	// return student grade in the assignment
-	int getAssignmentMaxGrade(int) const; // takes assignment index; return assignment's max grade
+	int getAssignmentMaxGrade(int) const; // takes assignment index; returnÔ assignment's max grade
 	void removeStudentFromCourse(const std::string&); // takes student's username; remove student account from students list in the course
 	void submitAssignmentSolution(const std::string&, int, const std::string&); // takes student's username and assignment's index and the answer
 	void addAssignment(const std::string&); // takes assignment question; add assignment to course

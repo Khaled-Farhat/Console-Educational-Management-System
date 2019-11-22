@@ -39,7 +39,7 @@ void StudentsDatabase::createStudentAccount(const string& studentUsername, const
 	students.push_back(Student(studentUsername, password));
 }
 
-// takes student user name and course's code; add course to student's coruses list
+// takes student user name and course's code; add course to student's courses list
 void StudentsDatabase::addCourseToStudent(const string& studentUsername, const string& courseCode) {
 	Student* student = getStudent(studentUsername);
 	student->addCourse(courseCode);
@@ -57,7 +57,7 @@ Student* StudentsDatabase::getStudent(const string& studentUsername) {
 	return nullptr;
 }
 
-// takes student's username and course's code; remove the course from the student's coruses list
+// takes student's username and course's code; remove the course from the student's courses list
 void StudentsDatabase::removeCourseFromStudent(const string& studentUsername, const string& courseCode) {
 	Student* student = getStudent(studentUsername);
 	student->removeCourse(courseCode);

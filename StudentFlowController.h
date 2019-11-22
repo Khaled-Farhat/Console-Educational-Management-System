@@ -1,4 +1,4 @@
-// StudentFlow controller class definion.
+// StudentFlow controller class definition.
 #ifndef STUDENTFLOW_H
 #define	STUDENTFLOW_H
 
@@ -15,7 +15,7 @@ public:
 private:
 	void enrollInCourse(); // enroll in course
 	virtual void viewCourse() override; // manage view course menu
-	virtual void viewAssignment() override; // mangage view assignment
+	virtual void viewAssignment() override; // manage view assignment
 	virtual void displayAssignmentInfo() const override; // display assignment info
 	void submitAssignmentSolution(); // manage submit solution
 	void gradesReport() const; // calls the database to get student's grades report

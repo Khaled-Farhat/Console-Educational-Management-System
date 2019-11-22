@@ -24,7 +24,7 @@ protected:
 
 	void displayMenu(const std::vector<std::string>&) const; // takes vector of string and output it
 	int inputInteger(int, int); // input integer in range [low - high]; check that it is valid integer; returns it
-	std::string inputString(size_t); // takes size; input a strig with size less than or equal that size; returns the string
+	std::string inputString(size_t); // takes size; input a string with size less than or equal that size; returns the string
 
 	bool listCourseAssignments(); // call the database to get course's assignments list
 	bool listCoursesCodes() const; // call the database to get current account's courses codes
@@ -40,7 +40,7 @@ private:
 	std::string courseCode; // temporary string for current course code
 	int assignmentIndex; // temporary assignment index
 
-	virtual void viewCourse() = 0; // prue virtual function to manage view course menu
+	virtual void viewCourse() = 0; // pure virtual function to manage view course menu
 	virtual void viewAssignment() = 0; // pure virtual function to manage view assignment menu
 	virtual void displayAssignmentInfo() const = 0; // pure virtual function to display assignments info
 };

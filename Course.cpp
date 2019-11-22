@@ -37,7 +37,7 @@ int Course::getStudentGradeInAssignment(const string& studentUsername, int assig
 	return assignments[assignmentIndex - 1].getStudentGrade(studentUsername);
 }
 
-// takes assignment index; returnÔ assignment's max grade
+// takes assignment index; return assignment's max grade
 int Course::getAssignmentMaxGrade(int assignmentIndex) const {
 	return assignments[assignmentIndex - 1].getMaxGrade();
 }

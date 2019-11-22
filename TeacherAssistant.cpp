@@ -5,6 +5,6 @@
 
 using namespace std;
 
-// constructor takes username and encrypted passwrod
+// constructor takes username and encrypted password
 TeacherAssistant::TeacherAssistant(const string& accountUsername, const string& accountPassword)
 	: Account(accountUsername, accountPassword) {}

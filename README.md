@@ -1,5 +1,27 @@
 # Console Educational Management System
-Small console project to implement what I learnt in C++.
+An Educational Management System made using the concepts of Object Oriented Analysis and Design.
 
-This project allows professors to manage students courses, and their grades. Students submit assignments and professors
-evaluate them.
+# Class Diagrams
+![alt text](https://raw.githubusercontent.com/Khaled-Farhat/Console-Educational-Management-System/master/Class%20Diagram.png)
+
+# Interface
+![alt text](https://raw.githubusercontent.com/Khaled-Farhat/Console-Educational-Management-System/master/Interface.png)
+
+# Actors
+* Students
+* Teacher Assistants
+* Professors
+
+# Use cases
+### Students
+* Enroll in courses
+* Submit solutions to assignments
+* Get their grades report
+### Teacher Assistants
+* Create a new assignment in course
+* View students submitted solutions
+* Grade students solutions
+### Professor
+* All the Teacher Assistant use cases, plus
+* Add Teacher Assistant to manage course
+* Create a new course

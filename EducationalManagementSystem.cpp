@@ -89,7 +89,7 @@ void EducationalManagementSystem::login() {
 	}
 }
 
-// perform signup
+// perform sign up
 void EducationalManagementSystem::signup() {
 	int accountTypeChoice;
 	string username;
@@ -151,7 +151,6 @@ void EducationalManagementSystem::runFlowController() {
 // private utility function to input integer
 int EducationalManagementSystem::inputInteger(int low, int high) {
 	int integer = 0;
-	bool validInput = false;
 
 	while (1) {
 		string input;
@@ -161,7 +160,7 @@ int EducationalManagementSystem::inputInteger(int low, int high) {
 			continue;
 		}
 
-		bool validInput = 1;
+		bool validInput = true;
 
 		for (size_t i{ 0 }; i < input.size(); ++i) {
 			if (isdigit(input[i]) == false) {
@@ -205,7 +204,7 @@ string EducationalManagementSystem::inputString(size_t stringSize) {
 			continue;
 		}
 
-		bool validInput = 1;
+		bool validInput = true;
 
 		for (size_t i{ 0 }; i < input.size(); ++i) {
 			if (input[i] == ' ') {

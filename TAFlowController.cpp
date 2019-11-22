@@ -1,4 +1,4 @@
-// Memeber-function definition for class TAFlowController which represents Teacher Assistant Flow Controller
+// Member-function definition for class TAFlowController which represents Teacher Assistant Flow Controller
 #include "TAFlowController.h"
 #include "Database.h"
 #include <string>
@@ -73,7 +73,7 @@ void TAFlowController::setSolutionIndex(int index) { solutionIndex = index; }
 // manage view course menu
 // overrides FlowController pure virtual function
 void TAFlowController::viewCourse() {
-	bool userExited = false; // whether use has choosed back
+	bool userExited = false; // whether use has choose back
 	const vector<string> viewCourseMenu{ "Add assignment", "List assignments","View assignment", "back" };
 
 	while (userExited == false) {
@@ -134,7 +134,7 @@ void TAFlowController::viewAssignment() {
 		displayMenu(viewAssignmentMenu);
 		int choice = inputInteger(1, 3); // input integer in range [1 - 3]
 		ViewAssignmentMenuOption option = static_cast<ViewAssignmentMenuOption>(choice);
-		
+
 		switch (option) {
 		case ViewAssignmentMenuOption::LIST: // list solutions
 			listAssignmentSolutions();
@@ -180,7 +180,7 @@ bool TAFlowController::listAssignmentSolutions() const {
 	else {
 		for (size_t i{ 0 }; i < solutionsInfo.size(); ++i) {
 			cout << "\n" << i + 1 << " - " << get<2>(solutionsInfo[i]) << " - "; // student username
-			
+
 			bool isGraded = get<0>(solutionsInfo[i]);
 
 			if (isGraded == true) {
@@ -210,7 +210,7 @@ int TAFlowController::inputSolutionSelection() {
 		return selection;
 	}
 	else {
-		throw exception("\nAssignment has no submitted solutions yet.");
+		throw std::runtime_error("\nAssignment has no submitted solutions yet.");
 	}
 }
 
@@ -247,7 +247,7 @@ void TAFlowController::gradeSolution() {
 	int assignmentMaxGrade = database.getAssignmentMaxGrade(courseCode, assignmentIndex);
 
 	cout << "\nEnter grade in range [0 - " << assignmentMaxGrade << "]: ";
-	
+
 	int grade = inputInteger(1, assignmentMaxGrade);
 	database.gradeSolution(courseCode, assignmentIndex, solutionIndex, grade);
 

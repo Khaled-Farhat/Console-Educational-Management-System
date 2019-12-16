@@ -69,7 +69,7 @@ void ProfessorFlowController::viewCourse() {
 
 	while (userExited == false) {
 		displayMenu(viewCourseMenu);
-		int choice = inputInteger(1, 4); // input integer in range [1 - 4]
+		int choice = inputInteger(1, 4); // input integer in range [1 - 5]
 		ProfessorViewCourseMenuOption option = static_cast<ProfessorViewCourseMenuOption>(choice);
 
 		switch (option) {

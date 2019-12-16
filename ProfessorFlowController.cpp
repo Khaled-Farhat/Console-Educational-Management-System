@@ -27,7 +27,7 @@ void ProfessorFlowController::run() {
 	while (userExited == false) {
 		// loop while user has not exited
 		displayMenu(TAMainMenu);
-		int choice = inputInteger(1, 3); // input integer in range [1 - 3]
+		int choice = inputInteger(1, 4); // input integer in range [1 - 3]
 		ProfessorMainMenuOption option = static_cast<ProfessorMainMenuOption>(choice);
 
 		switch (option) {
@@ -69,7 +69,7 @@ void ProfessorFlowController::viewCourse() {
 
 	while (userExited == false) {
 		displayMenu(viewCourseMenu);
-		int choice = inputInteger(1, 4); // input integer in range [1 - 5]
+		int choice = inputInteger(1, 5); // input integer in range [1 - 5]
 		ProfessorViewCourseMenuOption option = static_cast<ProfessorViewCourseMenuOption>(choice);
 
 		switch (option) {
